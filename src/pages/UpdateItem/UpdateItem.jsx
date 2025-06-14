@@ -4,6 +4,7 @@ import { AuthContext } from "../../contexts/AuthContext/AuthProvider";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Swal from "sweetalert2";
+import Spinner from "../../Components/Spinner";
 
 const UpdateItem = () => {
   const { id } = useParams();
@@ -112,11 +113,7 @@ const UpdateItem = () => {
   };
 
   if (loading) {
-    return (
-      <div className="text-center mt-10 text-xl font-semibold text-gray-600">
-        Loading item data...
-      </div>
-    );
+    return <Spinner />;
   }
 
   if (error) {

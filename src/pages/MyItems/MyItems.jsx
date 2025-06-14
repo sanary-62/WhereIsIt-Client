@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../contexts/AuthContext/AuthProvider";
 import { Link } from "react-router-dom";
+import Spinner from "../../Components/Spinner";
 
 const MyItems = () => {
   const { user } = useContext(AuthContext);
@@ -24,7 +25,7 @@ const MyItems = () => {
   }, [user]);
 
   if (loading) {
-    return <div className="text-center mt-10">Loading...</div>;
+    return <Spinner />;
   }
 
   if (myItems.length === 0) {

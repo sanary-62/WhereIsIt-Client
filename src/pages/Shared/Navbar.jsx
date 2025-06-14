@@ -19,13 +19,16 @@ const Navbar = () => {
     <NavLink to="/">Home</NavLink>
   </li>
   <li>
-    <NavLink to="/addItems">AddItems</NavLink>
+    <NavLink to="/addItems">Add Items</NavLink>
   </li>
   <li>
-    <NavLink to="/allItems">AllItems</NavLink>
+    <NavLink to="/allItems">All Items</NavLink>
   </li>
   <li>
-    <NavLink to="/myItems">MyItems</NavLink>
+    <NavLink to="/myItems">My Items</NavLink>
+  </li>
+  <li>
+    <NavLink to="/allRecovered">Recovered Items</NavLink>
   </li>
 </>
 

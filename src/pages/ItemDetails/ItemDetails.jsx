@@ -23,17 +23,19 @@ const ItemDetails = () => {
   }
 
   const recoveredData = {
-    itemId: item._id,
-    title: item.title,
-    thumbnail: item.thumbnail,
-    recoveredLocation: recoverLocation,
-    recoveredDate: recoverDate.toISOString().split("T")[0],
-    recoveredBy: {
-      name: user?.displayName,
-      email: user?.email,
-      image: user?.photoURL,
-    },
-  };
+  itemId: item._id,
+  title: item.title,
+  thumbnail: item.thumbnail,
+  recoveredLocation: recoverLocation,
+  recoveredDate: recoverDate.toISOString().split("T")[0],
+  recoveredBy: {
+    name: user?.displayName,
+    email: user?.email,
+    image: user?.photoURL,
+  },
+  userEmail: user?.email, // ✅ Needed for filtering on "AllRecovered" page
+};
+
 
   try {
     // 1. Add to recoveredItems collection
@@ -52,6 +54,7 @@ const ItemDetails = () => {
 
 
     if (res1.ok && res2.ok) {
+      item.status = "recovered";
       Swal.fire({
         icon: "success",
         title: "Success!",
