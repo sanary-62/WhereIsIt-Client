@@ -3,6 +3,7 @@ import { toast } from "react-hot-toast";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 import Lottie from "lottie-react";
+import { useNavigate } from "react-router-dom";
 
 import registerLottie from "../../assets/Lotties/Register.json";
 import { AuthContext } from "../../contexts/AuthContext/AuthProvider";
@@ -44,10 +45,14 @@ const Register = () => {
     createUser(email, password)
       .then((result) => {
         console.log(result.user);
+        toast.success("Welcome to WhereIsIt!");
+         navigate("/");
       })
       .catch((error) => {
         console.log(error);
       });
+      const navigate = useNavigate();
+
   };
 
   return (

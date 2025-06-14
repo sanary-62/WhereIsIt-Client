@@ -15,10 +15,14 @@ const Navbar = () => {
   };
   const links = (
     <>
-      <li>
-        <NavLink to="/">Home</NavLink>
-      </li>
-    </>
+  <li>
+    <NavLink to="/">Home</NavLink>
+  </li>
+  <li>
+    <NavLink to="/addItems">AddItems</NavLink>
+  </li>
+</>
+
   );
 
   return (
@@ -49,7 +53,7 @@ const Navbar = () => {
             {links}
           </ul>
         </div>
-        <div className="gap-0 flex">
+        <div className="gap-0 flex ml-16">
           <img
             src="/src/assets/818-8181280_lost-png-lost-and-found-icon.png"
             alt=""
@@ -59,9 +63,9 @@ const Navbar = () => {
         </div>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">{links}</ul>
+        <ul className="menu menu-horizontal px-1 ">{links}</ul>
       </div>
-      <div className="navbar-end gap-3">
+      <div className="navbar-end gap-3 mr-16">
         {user ? (
           <button onClick={handleSignOut} className="btn text-white bg-red-700">
             SignOut

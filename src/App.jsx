@@ -1,3 +1,12 @@
 import { Toaster } from "react-hot-toast";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-<Toaster position="top-center" />;
+function App() {
+  return (
+    <>
+      <RouterProvider router={router} />
+      <ToastContainer position="top-center" autoClose={3000} />
+    </>
+  );
+}

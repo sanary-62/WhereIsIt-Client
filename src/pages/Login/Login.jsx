@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import loginLottie from "../../assets/Lotties/Login.json";
 import { AuthContext } from "../../contexts/AuthContext/AuthProvider";
 import { FcGoogle } from "react-icons/fc";
+import { useNavigate } from "react-router-dom";
+
 const Login = () => {
   const { loginUser, loginWithGoogle } = useContext(AuthContext);
   const handleLogin = (e) => {
@@ -16,16 +18,19 @@ const Login = () => {
     loginUser(email, password)
       .then((result) => {
         console.log(result.user);
+        navigate("/");
       })
       .catch((error) => {
         console.log(error);
       });
   };
+const navigate = useNavigate();
 
   const handleGoogleLogin = () => {
     loginWithGoogle()
       .then((result) => {
         console.log("Logged in with Google:", result.user);
+        navigate("/");
       })
       .catch((error) => {
         console.error("Google Login Error:", error);
