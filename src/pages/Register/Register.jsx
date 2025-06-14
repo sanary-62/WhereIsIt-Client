@@ -9,6 +9,7 @@ import registerLottie from "../../assets/Lotties/Register.json";
 import { AuthContext } from "../../contexts/AuthContext/AuthProvider";
 const Register = () => {
   const { createUser } = useContext(AuthContext);
+  const navigate = useNavigate();
   const handleRegister = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -51,7 +52,7 @@ const Register = () => {
       .catch((error) => {
         console.log(error);
       });
-      const navigate = useNavigate();
+      
 
   };
 

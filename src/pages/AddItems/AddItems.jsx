@@ -44,6 +44,7 @@ const handleSubmit = async e => {
 
   const formData = {
     ...postData,
+     userEmail: user?.email,
     date: date.toISOString().split('T')[0],
     createdAt: new Date().toISOString(),
   };

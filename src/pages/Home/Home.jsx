@@ -3,6 +3,7 @@ import Banner from './Banner';
 import HowItWorks from './HowItWorks';
 import Testimonials from './Testimonials';
 import LatestItem from './LatestItem';
+import { motion } from "framer-motion";
 
 const itemsPromise = fetch('http://localhost:3000/items').then(res => res.json());
 

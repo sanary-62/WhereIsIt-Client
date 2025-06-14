@@ -21,6 +21,12 @@ const Navbar = () => {
   <li>
     <NavLink to="/addItems">AddItems</NavLink>
   </li>
+  <li>
+    <NavLink to="/allItems">AllItems</NavLink>
+  </li>
+  <li>
+    <NavLink to="/myItems">MyItems</NavLink>
+  </li>
 </>
 
   );
@@ -67,19 +73,35 @@ const Navbar = () => {
       </div>
       <div className="navbar-end gap-3 mr-16">
         {user ? (
-          <button onClick={handleSignOut} className="btn text-white bg-red-700">
-            SignOut
-          </button>
-        ) : (
-          <>
-            <NavLink className="btn bg-blue-900 text-white" to="/register">
-              Register
-            </NavLink>
-            <NavLink className="btn bg-blue-900 text-white" to="/login">
-              Login
-            </NavLink>
-          </>
-        )}
+  <>
+    <div className="relative group">
+      <img
+        src={user.photoURL || "https://i.ibb.co/2kRZKmW/default-avatar.png"}
+        alt="Profile"
+        className="w-10 h-10 rounded-full border-2 border-blue-500 cursor-pointer"
+      />
+      <div className="absolute top-12 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded hidden group-hover:block whitespace-nowrap z-10">
+        {user.displayName || "Anonymous"}
+      </div>
+    </div>
+    <button
+      onClick={handleSignOut}
+      className="btn text-white bg-red-700 ml-2"
+    >
+      SignOut
+    </button>
+  </>
+) : (
+  <>
+    <NavLink className="btn bg-blue-900 text-white" to="/register">
+      Register
+    </NavLink>
+    <NavLink className="btn bg-blue-900 text-white" to="/login">
+      Login
+    </NavLink>
+  </>
+)}
+
       </div>
     </div>
   );
