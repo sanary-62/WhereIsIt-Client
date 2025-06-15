@@ -47,13 +47,11 @@ const Register = () => {
       .then((result) => {
         console.log(result.user);
         toast.success("Welcome to WhereIsIt!");
-         navigate("/");
+        navigate("/");
       })
       .catch((error) => {
         console.log(error);
       });
-      
-
   };
 
   return (

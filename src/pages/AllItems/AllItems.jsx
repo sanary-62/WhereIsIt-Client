@@ -27,7 +27,7 @@ const AllItems = () => {
   }, [searchQuery, items]);
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-10">
+    <div className="max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
       <h1 className="text-3xl font-bold mb-8 text-center text-gray-800">
         Lost & Found Items
       </h1>
@@ -38,7 +38,7 @@ const AllItems = () => {
           placeholder="Search by title or location..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="input input-bordered w-full max-w-md"
+          className="input input-bordered w-full max-w-sm sm:max-w-md"
         />
       </div>
 

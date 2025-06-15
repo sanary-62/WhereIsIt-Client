@@ -5,14 +5,24 @@ import { Link } from "react-router-dom";
 
 const NotFound = () => {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen text-center px-4">
+    <div
+      className="flex flex-col items-center justify-center min-h-screen text-center px-4"
+      style={{ paddingLeft: "1rem", paddingRight: "1rem" }}
+    >
       <Lottie
-        style={{ width: "520px" }}
+        style={{
+          width: "100%",
+          maxWidth: "520px",
+          height: "auto",
+        }}
         animationData={errorLottie}
         loop={true}
       />
-      
-      <p className="text-gray-600 mt-2">
+
+      <p
+        className="text-gray-600 mt-2"
+        style={{ maxWidth: "480px", margin: "0 auto" }}
+      >
         Oops! The page you're looking for doesn't exist or has been moved.
       </p>
       <Link

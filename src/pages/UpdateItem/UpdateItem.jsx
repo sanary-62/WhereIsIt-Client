@@ -25,7 +25,6 @@ const UpdateItem = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Load existing item data on mount
   useEffect(() => {
     setLoading(true);
     fetch(`http://localhost:3000/items/${id}`)
@@ -43,7 +42,7 @@ const UpdateItem = () => {
           description: data.description || "",
           category: data.category || "",
           location: data.location || "",
-          // fallback to logged in user if empty
+
           contactName: data.contactName || user?.displayName || "",
           contactEmail: data.contactEmail || user?.email || "",
         });
@@ -81,7 +80,6 @@ const UpdateItem = () => {
       });
 
       if (!res.ok) {
-        // If 404 or other errors
         const errorText = await res.text();
         throw new Error(`Update failed: ${res.status} - ${errorText}`);
       }
@@ -125,7 +123,7 @@ const UpdateItem = () => {
   }
 
   return (
-    <div className="max-w-xl mx-auto p-6 bg-white shadow-md rounded my-12">
+    <div className="w-full max-w-xl mx-auto p-4 sm:p-6 bg-white shadow-md rounded my-12">
       <h2 className="text-3xl font-bold mb-6 text-blue-800">
         Update Lost & Found Item
       </h2>

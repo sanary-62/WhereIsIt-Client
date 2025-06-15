@@ -36,7 +36,8 @@ const Navbar = () => {
 
   return (
     <div className="navbar bg-base-100 shadow-sm">
-      <div className="navbar-start">
+      <div className="navbar-start flex items-center">
+
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
             <svg
@@ -57,12 +58,13 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-blue-600 rounded-box z-1 mt-3 w-52 p-2 "
+            className="menu menu-sm dropdown-content bg-blue-100 rounded-box z-1 mt-3 w-52 p-2 "
           >
             {links}
           </ul>
         </div>
-        <div className="gap-0 flex ml-16">
+        <div className="flex items-center gap-2 ml-4 sm:ml-8 md:ml-12 lg:ml-16">
+
           <img
             src="/src/assets/818-8181280_lost-png-lost-and-found-icon.png"
             alt=""
@@ -74,14 +76,16 @@ const Navbar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1 ">{links}</ul>
       </div>
-      <div className="navbar-end gap-3 mr-16">
+      <div className="navbar-end gap-2 sm:gap-3 mr-4 sm:mr-8 md:mr-12 lg:mr-16">
+
         {user ? (
   <>
     <div className="relative group">
       <img
         src={user.photoURL || "https://i.ibb.co/2kRZKmW/default-avatar.png"}
         alt="Profile"
-        className="w-10 h-10 rounded-full border-2 border-blue-500 cursor-pointer"
+        className="w-10 h-10 min-w-10 rounded-full border-2 border-blue-500 cursor-pointer"
+
       />
       <div className="absolute top-12 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded hidden group-hover:block whitespace-nowrap z-10">
         {user.displayName || "Anonymous"}

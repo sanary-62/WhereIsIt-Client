@@ -99,8 +99,10 @@ const handleSubmit = async e => {
 
 
   return (
-    <div className="max-w-xl mx-auto p-6 bg-white shadow-md rounded my-12">
-      <h2 className="text-4xl font-bold mb-6 text-blue-800">Add Lost & Found Item</h2>
+    <div className="max-w-xl w-full mx-auto p-4 sm:p-6 bg-white shadow-md rounded my-8 sm:my-12">
+
+      <h2 className="text-2xl sm:text-4xl font-bold mb-6 text-blue-800 text-center sm:text-left">
+Add Lost & Found Item</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <select name="type" value={postData.type} onChange={handleChange} className="select select-bordered w-full">
           <option value="Lost">Lost</option>
@@ -120,6 +122,7 @@ const handleSubmit = async e => {
         <div>
           <label className="block mb-1">Date Lost/Found</label>
           <DatePicker selected={date} onChange={date => setDate(date)} className="input input-bordered w-full" />
+
         </div>
 
         <div className="bg-gray-100 p-4 rounded">
