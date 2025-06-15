@@ -35,7 +35,7 @@ const LatestItem = ({ itemsPromise }) => {
       </div>
 
       <div className="flex justify-center mt-10">
-        <Link to="/items">
+        <Link to="/allItems">
           <button className="btn bg-amber-800 text-white">See All</button>
         </Link>
       </div>

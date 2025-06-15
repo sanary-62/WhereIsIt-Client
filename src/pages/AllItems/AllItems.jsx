@@ -3,13 +3,28 @@ import { Link } from "react-router-dom";
 
 const AllItems = () => {
   const [items, setItems] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredItems, setFilteredItems] = useState([]);
 
   useEffect(() => {
     fetch("http://localhost:3000/items")
       .then((res) => res.json())
-      .then((data) => setItems(data))
+      .then((data) => {
+        setItems(data);
+        setFilteredItems(data);
+      })
       .catch((err) => console.error("Failed to fetch items:", err));
   }, []);
+
+  useEffect(() => {
+    const query = searchQuery.toLowerCase();
+    const filtered = items.filter(
+      (item) =>
+        item.title?.toLowerCase().includes(query) ||
+        item.location?.toLowerCase().includes(query)
+    );
+    setFilteredItems(filtered);
+  }, [searchQuery, items]);
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-10">
@@ -17,8 +32,18 @@ const AllItems = () => {
         Lost & Found Items
       </h1>
 
+      <div className="mb-6 text-center">
+        <input
+          type="text"
+          placeholder="Search by title or location..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="input input-bordered w-full max-w-md"
+        />
+      </div>
+
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        {items.map((item) => (
+        {filteredItems.map((item) => (
           <div
             key={item._id}
             className="bg-white shadow-md rounded-xl p-5 border border-gray-200"

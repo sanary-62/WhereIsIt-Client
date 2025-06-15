@@ -1,14 +1,42 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 const Footer = () => {
+  const links = (
+    <>
+      <li>
+        <NavLink to="/">Home</NavLink>
+      </li>
+      <li>
+        <NavLink to="/addItems">Add Items</NavLink>
+      </li>
+      <li>
+        <NavLink to="/allItems">All Items</NavLink>
+      </li>
+      <li>
+        <NavLink to="/myItems">My Items</NavLink>
+      </li>
+      <li>
+        <NavLink to="/allRecovered">Recovered Items</NavLink>
+      </li>
+    </>
+  );
+
   return (
-    <footer className="footer footer-horizontal footer-center bg-base-200 text-base-content rounded p-10">
-      <nav className="grid grid-flow-col gap-4">
-        <a className="link link-hover">About us</a>
-        <a className="link link-hover">Contact</a>
-        <a className="link link-hover">Jobs</a>
-        <a className="link link-hover">Press kit</a>
-      </nav>
+    <footer className="footer footer-horizontal footer-center bg-blue-100 text-base-content rounded p-10">
+      <div className="navbar-center hidden lg:flex">
+        <ul className="menu menu-horizontal px-1">{links}</ul>
+      </div>
+
+      <div className="gap-0 flex ml-16">
+        <img
+          src="/src/assets/818-8181280_lost-png-lost-and-found-icon.png"
+          alt=""
+          className="h-12 w-12"
+        />
+        <a className="btn btn-ghost text-xl">WhereIsIt</a>
+      </div>
+
       <nav>
         <div className="grid grid-flow-col gap-4">
           <a>
@@ -46,6 +74,7 @@ const Footer = () => {
           </a>
         </div>
       </nav>
+
       <aside>
         <p>
           Copyright © {new Date().getFullYear()} - All right reserved by
