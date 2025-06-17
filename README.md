@@ -7,7 +7,7 @@ This is the frontend client of **WhereIsIt** — a web platform to post and mana
 ##  Live Website
 >  Currently running locally: `http://localhost:5174`
 
-> Live Deployment :
+> Live Deployment : 'https://whereisit-app-bdc3b.web.app'
 
 ---
 
