@@ -18,39 +18,49 @@ const Register = () => {
     const password = form.password.value;
     const photoURL = form.photoURL.value;
 
-    const uppercaseRegex = /[A-Z]/;
-    const lowercaseRegex = /[a-z]/;
-
-    if (password.length < 6) {
-      toast.error("Password must be at least 6 characters long.");
-      return;
-    }
-    if (!uppercaseRegex.test(password)) {
-      toast.error("Password must contain at least one uppercase letter.");
-      return;
-    }
-    if (!lowercaseRegex.test(password)) {
-      toast.error("Password must contain at least one lowercase letter.");
-      return;
-    }
-
-    Swal.fire({
-      title: "Success!",
-      text: "Registration Successful!",
-      icon: "success",
-      confirmButtonText: "OK",
-    });
-
-    form.reset();
-
     createUser(email, password)
       .then((result) => {
-        console.log(result.user);
-        toast.success("Welcome to WhereIsIt!");
-        navigate("/");
+        const user = result.user;
+
+        fetch("http://localhost:3000/jwt", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email: user.email }),
+        })
+          .then(async (res) => {
+            if (!res.ok) {
+              const errorData = await res.json().catch(() => null);
+              const message = errorData?.message || res.statusText;
+              throw new Error(`JWT request failed: ${message}`);
+            }
+            return res.json();
+          })
+          .then((data) => {
+            if (data.token) {
+              localStorage.setItem("accessToken", data.token);
+
+              Swal.fire({
+                title: "Success!",
+                text: "Registration Successful!",
+                icon: "success",
+                confirmButtonText: "OK",
+              });
+
+              toast.success("Welcome to WhereIsIt!");
+              navigate("/");
+              form.reset();
+            } else {
+              toast.error("Failed to get token");
+            }
+          })
+          .catch((err) => {
+            console.error("JWT fetch error:", err);
+            toast.error("Token error: " + err.message);
+          });
       })
       .catch((error) => {
         console.log(error);
+        toast.error(error.message);
       });
   };
 

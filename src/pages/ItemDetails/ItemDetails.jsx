@@ -19,6 +19,7 @@ const ItemDetails = () => {
         title: "Oops...",
         text: "Item is already recovered.",
       });
+      return;
     }
 
     const recoveredData = {
@@ -36,15 +37,23 @@ const ItemDetails = () => {
     };
 
     try {
+      const token = await user.getIdToken();
+
       const res1 = await fetch("http://localhost:3000/recoveredItems", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
         body: JSON.stringify(recoveredData),
       });
 
       const res2 = await fetch(`http://localhost:3000/items/${item._id}`, {
         method: "PATCH",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
         body: JSON.stringify({ status: "recovered" }),
       });
 

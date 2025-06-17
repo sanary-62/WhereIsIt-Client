@@ -62,53 +62,57 @@ const UpdateItem = () => {
   };
 
   const handleUpdate = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    const updatedData = {
-      ...postData,
-      date: date.toISOString().split("T")[0],
-      updatedAt: new Date().toISOString(),
-    };
+  const updatedData = {
+    ...postData,
+    date: date.toISOString().split("T")[0],
+    updatedAt: new Date().toISOString(),
+  };
 
-    try {
-      const res = await fetch(`http://localhost:3000/items/${id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(updatedData),
-      });
+  try {
+    const token = await user.getIdToken();
 
-      if (!res.ok) {
-        const errorText = await res.text();
-        throw new Error(`Update failed: ${res.status} - ${errorText}`);
-      }
+    const res = await fetch(`http://localhost:3000/items/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,  // <-- Add this line
+      },
+      body: JSON.stringify(updatedData),
+    });
 
-      const result = await res.json();
+    if (!res.ok) {
+      const errorText = await res.text();
+      throw new Error(`Update failed: ${res.status} - ${errorText}`);
+    }
 
-      if (result.modifiedCount > 0 || result.success) {
-        Swal.fire({
-          icon: "success",
-          title: "Item Updated",
-          text: "Your item was updated successfully.",
-        });
-        navigate("/myItems");
-      } else {
-        Swal.fire({
-          icon: "info",
-          title: "No Changes Made",
-          text: "Nothing was updated.",
-        });
-      }
-    } catch (error) {
-      console.error(error);
+    const result = await res.json();
+
+    if (result.modifiedCount > 0 || result.success) {
       Swal.fire({
-        icon: "error",
-        title: "Update Failed",
-        text: "There was a problem updating your item.",
+        icon: "success",
+        title: "Item Updated",
+        text: "Your item was updated successfully.",
+      });
+      navigate("/myItems");
+    } else {
+      Swal.fire({
+        icon: "info",
+        title: "No Changes Made",
+        text: "Nothing was updated.",
       });
     }
-  };
+  } catch (error) {
+    console.error(error);
+    Swal.fire({
+      icon: "error",
+      title: "Update Failed",
+      text: "There was a problem updating your item.",
+    });
+  }
+};
+
 
   if (loading) {
     return <Spinner />;

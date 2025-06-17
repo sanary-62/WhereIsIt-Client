@@ -16,8 +16,14 @@ const Login = () => {
     console.log(email, password);
 
     loginUser(email, password)
-      .then((result) => {
-        console.log(result.user);
+      .then(async (result) => {
+        const user = result.user;
+
+        const token = await user.getIdToken();
+
+        localStorage.setItem("access-token", token);
+
+        console.log("User token:", token);
         navigate("/");
       })
       .catch((error) => {
@@ -28,8 +34,13 @@ const Login = () => {
 
   const handleGoogleLogin = () => {
     loginWithGoogle()
-      .then((result) => {
-        console.log("Logged in with Google:", result.user);
+      .then(async (result) => {
+        const user = result.user;
+        const token = await user.getIdToken();
+
+        localStorage.setItem("access-token", token);
+
+        console.log("Logged in with Google, token:", token);
         navigate("/");
       })
       .catch((error) => {

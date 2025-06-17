@@ -11,17 +11,28 @@ const MyItems = () => {
   useEffect(() => {
     if (!user?.email) return;
 
-    fetch("http://localhost:3000/items")
-      .then((res) => res.json())
-      .then((data) => {
-        const filtered = data.filter((item) => item.userEmail === user.email);
-        setMyItems(filtered);
-        setLoading(false);
+    user.getIdToken().then((idToken) => {
+      fetch(`http://localhost:3000/items?email=${user.email}`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${idToken}`,
+        },
       })
-      .catch((err) => {
-        console.error(err);
-        setLoading(false);
-      });
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error("Failed to fetch items");
+          }
+          return res.json();
+        })
+        .then((data) => {
+          setMyItems(data);
+          setLoading(false);
+        })
+        .catch((err) => {
+          console.error(err);
+          setLoading(false);
+        });
+    });
   }, [user]);
 
   if (loading) {
@@ -35,6 +46,9 @@ const MyItems = () => {
       </div>
     );
   }
+  console.log("Sending token:", user.accessToken);
+
+  console.log("token in the context", user.accessToken);
 
   return (
     <div className="p-5 max-w-5xl mx-auto">
@@ -86,22 +100,29 @@ const MyItems = () => {
     </div>
   );
 
-  function handleDelete(id) {
+  async function handleDelete(id) {
     const confirm = window.confirm(
       "Are you sure you want to delete this item?"
     );
     if (!confirm) return;
 
-    fetch(`http://localhost:3000/items/${id}`, {
-      method: "DELETE",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.deletedCount > 0) {
-          const remaining = myItems.filter((item) => item._id !== id);
-          setMyItems(remaining);
-        }
+    try {
+      const token = await user.getIdToken();
+      const res = await fetch(`http://localhost:3000/items/${id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
+      const data = await res.json();
+      if (data.deletedCount > 0) {
+        const remaining = myItems.filter((item) => item._id !== id);
+        setMyItems(remaining);
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Failed to delete item. Try again.");
+    }
   }
 };
 
