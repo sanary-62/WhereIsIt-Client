@@ -32,7 +32,7 @@ const Banner = () => {
   }, []);
 
   return (
-    <div className="w-full h-[400px] sm:h-[500px] md:h-[670px] relative overflow-hidden">
+    <div className="w-full h-[400px] sm:h-[500px] md:h-[670px] relative overflow-hidden mt-6">
       {banners.map((banner, index) => (
         <div
           key={banner.id}

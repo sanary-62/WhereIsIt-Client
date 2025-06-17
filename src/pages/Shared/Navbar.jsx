@@ -4,6 +4,12 @@ import { AuthContext } from "../../contexts/AuthContext/AuthProvider";
 
 const Navbar = () => {
   const { user, signOutUser } = useContext(AuthContext);
+
+  console.log("User Object:", user);
+  console.log("Photo URL:", user?.photoURL);
+
+  console.log(user);
+
   const handleSignOut = () => {
     signOutUser()
       .then(() => {
@@ -15,29 +21,27 @@ const Navbar = () => {
   };
   const links = (
     <>
-  <li>
-    <NavLink to="/">Home</NavLink>
-  </li>
-  <li>
-    <NavLink to="/addItems">Add Items</NavLink>
-  </li>
-  <li>
-    <NavLink to="/allItems">All Items</NavLink>
-  </li>
-  <li>
-    <NavLink to="/myItems">My Items</NavLink>
-  </li>
-  <li>
-    <NavLink to="/allRecovered">Recovered Items</NavLink>
-  </li>
-</>
-
+      <li>
+        <NavLink to="/">Home</NavLink>
+      </li>
+      <li>
+        <NavLink to="/addItems">Add Items</NavLink>
+      </li>
+      <li>
+        <NavLink to="/allItems">All Items</NavLink>
+      </li>
+      <li>
+        <NavLink to="/myItems">My Items</NavLink>
+      </li>
+      <li>
+        <NavLink to="/allRecovered">Recovered Items</NavLink>
+      </li>
+    </>
   );
 
   return (
     <div className="navbar bg-base-100 shadow-sm">
       <div className="navbar-start flex items-center">
-
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
             <svg
@@ -64,7 +68,6 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="flex items-center gap-2 ml-4 sm:ml-8 md:ml-12 lg:ml-16">
-
           <img
             src="/src/assets/818-8181280_lost-png-lost-and-found-icon.png"
             alt=""
@@ -77,38 +80,40 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1 ">{links}</ul>
       </div>
       <div className="navbar-end gap-2 sm:gap-3 mr-4 sm:mr-8 md:mr-12 lg:mr-16">
-
         {user ? (
-  <>
-    <div className="relative group">
-      <img
-        src={user.photoURL || "https://i.ibb.co/2kRZKmW/default-avatar.png"}
-        alt="Profile"
-        className="w-10 h-10 min-w-10 rounded-full border-2 border-blue-500 cursor-pointer"
+          <>
+            <div className="relative group">
+              <img
+                src={
+                  user?.photoURL
+                    ? user.photoURL
+                    : "https://i.ibb.co/2kRZKmW/default-avatar.png"
+                }
+                alt="Profile"
+                className="w-10 h-10 min-w-10 rounded-full border-2 border-blue-500 cursor-pointer"
+              />
 
-      />
-      <div className="absolute top-12 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded hidden group-hover:block whitespace-nowrap z-10">
-        {user.displayName || "Anonymous"}
-      </div>
-    </div>
-    <button
-      onClick={handleSignOut}
-      className="btn text-white bg-red-700 ml-2"
-    >
-      SignOut
-    </button>
-  </>
-) : (
-  <>
-    <NavLink className="btn bg-blue-900 text-white" to="/register">
-      Register
-    </NavLink>
-    <NavLink className="btn bg-blue-900 text-white" to="/login">
-      Login
-    </NavLink>
-  </>
-)}
-
+              <div className="absolute top-12 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded hidden group-hover:block whitespace-nowrap z-10">
+                {user.displayName || "Anonymous"}
+              </div>
+            </div>
+            <button
+              onClick={handleSignOut}
+              className="btn text-white bg-red-700 ml-2"
+            >
+              SignOut
+            </button>
+          </>
+        ) : (
+          <>
+            <NavLink className="btn bg-blue-900 text-white" to="/register">
+              Register
+            </NavLink>
+            <NavLink className="btn bg-blue-900 text-white" to="/login">
+              Login
+            </NavLink>
+          </>
+        )}
       </div>
     </div>
   );
