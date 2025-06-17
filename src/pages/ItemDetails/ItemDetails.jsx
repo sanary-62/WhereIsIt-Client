@@ -39,7 +39,7 @@ const ItemDetails = () => {
     try {
       const token = await user.getIdToken();
 
-      const res1 = await fetch("http://localhost:3000/recoveredItems", {
+      const res1 = await fetch("https://whereisit-server-beta.vercel.app/recoveredItems", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -48,7 +48,7 @@ const ItemDetails = () => {
         body: JSON.stringify(recoveredData),
       });
 
-      const res2 = await fetch(`http://localhost:3000/items/${item._id}`, {
+      const res2 = await fetch(`https://whereisit-server-beta.vercel.app/items/${item._id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

@@ -10,7 +10,7 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:3000/items", {
+    fetch("https://whereisit-server-beta.vercel.app/items", {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("access-token")}`,
       },

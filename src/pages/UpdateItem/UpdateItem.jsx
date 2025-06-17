@@ -27,7 +27,7 @@ const UpdateItem = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`http://localhost:3000/items/${id}`)
+    fetch(`https://whereisit-server-beta.vercel.app/items/${id}`)
       .then((res) => {
         if (!res.ok) {
           throw new Error(`Error fetching item: ${res.status}`);
@@ -73,7 +73,7 @@ const UpdateItem = () => {
   try {
     const token = await user.getIdToken();
 
-    const res = await fetch(`http://localhost:3000/items/${id}`, {
+    const res = await fetch(`https://whereisit-server-beta.vercel.app/items/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

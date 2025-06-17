@@ -12,7 +12,7 @@ const MyItems = () => {
     if (!user?.email) return;
 
     user.getIdToken().then((idToken) => {
-      fetch(`http://localhost:3000/items?email=${user.email}`, {
+      fetch(`https://whereisit-server-beta.vercel.app/items?email=${user.email}`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${idToken}`,
@@ -108,7 +108,7 @@ const MyItems = () => {
 
     try {
       const token = await user.getIdToken();
-      const res = await fetch(`http://localhost:3000/items/${id}`, {
+      const res = await fetch(`https://whereisit-server-beta.vercel.app/items/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,

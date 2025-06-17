@@ -13,7 +13,7 @@ const AllItems = () => {
     if (!user?.email) return;
 
     user.getIdToken().then((idToken) => {
-      fetch(`http://localhost:3000/items`, {
+      fetch(`https://whereisit-server-beta.vercel.app/items`, {
         headers: {
           Authorization: `Bearer ${idToken}`,
         },

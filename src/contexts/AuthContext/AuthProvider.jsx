@@ -14,9 +14,11 @@ export const AuthContext = createContext();
 
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
+
 const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState(null);
+
   const createUser = (email, password) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
@@ -38,11 +40,21 @@ const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
+    const unSubscribe = onAuthStateChanged(auth, async (currentUser) => {
       setUser(currentUser);
       setLoading(false);
+
+      if (currentUser) {
+        const token = await currentUser.getIdToken();
+        localStorage.setItem("access-token", token);
+        console.log("Token saved to localStorage:", token);
+      } else {
+        localStorage.removeItem("access-token");
+      }
+
       console.log("user in the auth state change", currentUser);
     });
+
     return () => {
       unSubscribe();
     };
@@ -58,7 +70,9 @@ const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={authInfo}>
+      {children}
+    </AuthContext.Provider>
   );
 };
 

@@ -14,7 +14,7 @@ const AllRecovered = () => {
     const fetchRecovered = async () => {
       try {
         const token = await user.getIdToken();
-        const res = await fetch("http://localhost:3000/recoveredItems", {
+        const res = await fetch("https://whereisit-server-beta.vercel.app/recoveredItems", {
           headers: {
             Authorization: `Bearer ${token}`,
           },

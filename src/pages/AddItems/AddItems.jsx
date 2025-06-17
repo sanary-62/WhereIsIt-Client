@@ -52,7 +52,7 @@ const AddItems = () => {
     try {
       const token = await user.getIdToken();
 
-      const res = await fetch("http://localhost:3000/items", {
+      const res = await fetch("https://whereisit-server-beta.vercel.app/items", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
