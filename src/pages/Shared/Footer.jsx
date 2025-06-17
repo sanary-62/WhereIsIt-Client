@@ -31,7 +31,7 @@ const Footer = () => {
 
       <div className="gap-0 flex ml-16">
         <LogoLink />
-        <a className="btn btn-ghost text-xl">WhereIsIt</a>
+
       </div>
 
       <nav>
