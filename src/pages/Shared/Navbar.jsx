@@ -1,6 +1,9 @@
 import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext/AuthProvider";
+import LogoLink from "../../Components/LogoLink";
+
+
 
 const Navbar = () => {
   const { user, signOutUser } = useContext(AuthContext);
@@ -68,13 +71,9 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="flex items-center gap-2 ml-4 sm:ml-8 md:ml-12 lg:ml-16">
-          <img
-            src="/src/assets/818-8181280_lost-png-lost-and-found-icon.png"
-            alt=""
-            className="h-12 w-12"
-          />
-          <a className="btn btn-ghost text-xl">WhereIsIt</a>
-        </div>
+  <LogoLink />
+</div>
+
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1 ">{links}</ul>

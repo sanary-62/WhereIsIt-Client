@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import LogoLink from "../../Components/LogoLink";
 
 const Footer = () => {
   const links = (
@@ -29,11 +30,7 @@ const Footer = () => {
       </div>
 
       <div className="gap-0 flex ml-16">
-        <img
-          src="/src/assets/818-8181280_lost-png-lost-and-found-icon.png"
-          alt=""
-          className="h-12 w-12"
-        />
+        <LogoLink />
         <a className="btn btn-ghost text-xl">WhereIsIt</a>
       </div>
 
