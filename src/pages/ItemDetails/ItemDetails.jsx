@@ -117,7 +117,7 @@ const ItemDetails = () => {
       )}
 
       {showModal && (
-        <div className="fixed inset-0 backdrop-blur-sm bg-black/30 flex justify-center items-center z-50 px-4">
+        <div className="fixed inset-0 backdrop-blur-sm bg-black/20 flex justify-center items-center z-50 px-4">
           <div className="bg-white p-6 rounded w-full max-w-md">
             <h3 className="text-xl font-semibold mb-4">Recover Item Info</h3>
             <input

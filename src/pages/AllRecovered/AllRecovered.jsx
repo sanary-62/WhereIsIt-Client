@@ -105,7 +105,7 @@ const AllRecovered = () => {
           </div>
         ) : (
           <div className="overflow-x-auto">
-            <table className="table w-full border rounded">
+            <table className="table w-full border border-gray-200 rounded">
               <thead>
                 <tr className="bg-gray-100">
                   <th>Image</th>

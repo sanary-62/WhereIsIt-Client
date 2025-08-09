@@ -52,9 +52,9 @@ const MyItems = () => {
 
   return (
     <div className="p-5 max-w-5xl mx-auto">
-      <h2 className="text-2xl font-bold mb-4">My Posted Items</h2>
+      <h2 className="text-3xl font-bold mb-4 text-blue-700">My Posted Items</h2>
       <div className="overflow-x-auto w-full">
-        <table className="table w-full border">
+        <table className="table w-full border border-gray-200">
           <thead>
             <tr className="bg-gray-100">
               <th>Image</th>

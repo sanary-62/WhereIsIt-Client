@@ -3,15 +3,15 @@ import React, { useState, useEffect } from "react";
 const banners = [
   {
     id: 1,
-    image: "https://i.postimg.cc/zBG6jrZM/banner-1.jpg",
+    image: "https://i.postimg.cc/mgJbf4nX/27037113.jpg",
   },
   {
     id: 2,
-    image: "https://i.postimg.cc/Ss151vmK/banner-2.jpg",
+    image: "https://i.postimg.cc/xdm997D0/42551459.jpg",
   },
   {
     id: 3,
-    image: "https://i.postimg.cc/J0yFf5h5/banner-3.jpg",
+    image: "https://i.postimg.cc/TYHxgGTd/11145.jpg",
   },
 ];
 
@@ -32,14 +32,14 @@ const Banner = () => {
   }, []);
 
   return (
-    <div className="w-full h-[400px] sm:h-[500px] md:h-[670px] relative overflow-hidden mt-6">
-      {banners.map((banner, index) => (
-        <div
-          key={banner.id}
-          className={`absolute top-0 left-0 w-full h-full transition-opacity duration-700 ease-in-out ${
-            index === current ? "opacity-100 z-20" : "opacity-0 z-10"
-          }`}
-        >
+   <div className="w-full relative overflow-hidden mt-5 h-[350px] sm:h-[500px] md:h-[670px]">
+  {banners.map((banner, index) => (
+    <div
+      key={banner.id}
+      className={`absolute top-0 left-0 w-full h-full transition-opacity duration-700 ease-in-out ${
+        index === current ? "opacity-100 z-20" : "opacity-0 z-10"
+      }`}
+    >
           <img
             src={banner.image}
             alt={banner.title}

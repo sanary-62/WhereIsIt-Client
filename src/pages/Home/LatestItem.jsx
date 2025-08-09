@@ -64,7 +64,7 @@ const LatestItem = () => {
           {items.map((item) => (
             <div
               key={item._id}
-              className="card bg-white shadow-md border border-blue-500 p-4 rounded-md"
+              className="card bg-white shadow-md border border-blue-200 p-4 rounded-md"
             >
               <img
                 src={item.thumbnail}
@@ -100,7 +100,7 @@ const LatestItem = () => {
 
       <div className="flex justify-center mt-10">
         <Link to="/allItems">
-          <button className="btn bg-amber-800 text-white">See All</button>
+          <button className="btn bg-amber-600 text-white">See All</button>
         </Link>
       </div>
     </div>

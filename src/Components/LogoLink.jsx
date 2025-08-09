@@ -1,17 +1,12 @@
-// src/components/shared/LogoLink.jsx
 import React from "react";
-import { NavLink } from "react-router-dom";
+import logo from '../../src/assets/logo/Logo.png'
 
 const LogoLink = () => {
   return (
-    <NavLink to="/" className="flex items-center gap-2">
-      <img
-        src="/src/assets/818-8181280_lost-png-lost-and-found-icon.png" 
-        alt="Logo"
-        className="h-12 w-12"
-      />
-      <span className="btn btn-ghost text-xl normal-case">WhereIsIt</span>
-    </NavLink>
+   <div className='flex'>
+            <img src={logo} alt="Logo" className='h-12 w-12' />
+            <p className='text-blue-900 font-semibold mt-5 text-lg'>WhereIsIt</p>
+        </div>
   );
 };
 

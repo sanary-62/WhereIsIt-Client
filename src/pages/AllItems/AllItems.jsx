@@ -55,7 +55,7 @@ const AllItems = () => {
 
   return (
     <div className="max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
-      <h1 className="text-3xl font-bold mb-8 text-center text-gray-800">
+      <h1 className="text-3xl font-bold mb-8 text-center text-blue-700">
         Lost & Found Items
       </h1>
 
