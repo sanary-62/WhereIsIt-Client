@@ -67,10 +67,11 @@ const router = createBrowserRouter([
   ),
       },
       {
-        path: "/items/:id",
-        element: <ItemDetails />,
-        loader: ({params}) => fetch(`http://localhost:3000/items/${params.id}`)
-      }
+  path: "/items/:id",
+  element: <ItemDetails />,
+  loader: ({ params }) => fetch(`https://whereisit-server-beta.vercel.app/items/${params.id}`)
+}
+
     ],
   },
 ]);

@@ -83,13 +83,18 @@ const ItemDetails = () => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto p-6 sm:px-8 px-4 bg-white rounded shadow my-3">
-      <img
-        src={item.thumbnail}
-        alt={item.title}
-        className="w-full h-64 sm:h-96 object-cover rounded mb-4"
-      />
-      <h2 className="text-3xl font-bold mb-2">{item.title}</h2>
+    <div className="max-w-7xl mx-auto p-6 sm:px-8 px-4 bg-white rounded shadow my-3 mt-16">
+  <div className="flex flex-col md:flex-row gap-6">
+   
+    <img
+      src={item.thumbnail}
+      alt={item.title}
+      className="w-full md:w-2/4 h-64 sm:h-96 object-cover rounded"
+    />
+
+    
+    <div className="flex-1">
+      <h2 className="text-3xl font-bold text-blue-700 mb-2">{item.title}</h2>
       <p className="mb-2 text-gray-700">{item.description}</p>
       <p>
         <strong>Category:</strong> {item.category}
@@ -115,6 +120,8 @@ const ItemDetails = () => {
           {item.type === "Lost" ? "Found This!" : "This is Mine!"}
         </button>
       )}
+    </div>
+  </div>
 
       {showModal && (
         <div className="fixed inset-0 backdrop-blur-sm bg-black/20 flex justify-center items-center z-50 px-4">

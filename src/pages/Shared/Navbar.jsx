@@ -23,27 +23,33 @@ const Navbar = () => {
       });
   };
   const links = (
-    <>
-      <li>
-        <NavLink to="/">Home</NavLink>
-      </li>
-      <li>
-        <NavLink to="/addItems">Add Items</NavLink>
-      </li>
-      <li>
-        <NavLink to="/allItems">All Items</NavLink>
-      </li>
-      <li>
-        <NavLink to="/myItems">My Items</NavLink>
-      </li>
-      <li>
-        <NavLink to="/allRecovered">Recovered Items</NavLink>
-      </li>
-    </>
-  );
+  <>
+    <li>
+      <NavLink to="/">Home</NavLink>
+    </li>
+    {user && (
+      <>
+        <li>
+          <NavLink to="/addItems">Add Items</NavLink>
+        </li>
+        <li>
+          <NavLink to="/myItems">My Items</NavLink>
+        </li>
+      </>
+    )}
+    <li>
+      <NavLink to="/allItems">All Items</NavLink>
+    </li>
+    <li>
+      <NavLink to="/allRecovered">Recovered Items</NavLink>
+    </li>
+  </>
+);
+
 
   return (
-    <div className="navbar shadow-sm bg-blue-50">
+    <div className="navbar fixed top-0 left-0 right-0 shadow-sm bg-blue-50 z-50 w-full">
+
       <div className="navbar-start flex items-center">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -70,7 +76,7 @@ const Navbar = () => {
             {links}
           </ul>
         </div>
-        <div className="flex items-center gap-2 ml-4 sm:ml-8 md:ml-12 lg:ml-16">
+        <div className="flex items-center gap-2 ml-4 sm:ml-20 md:ml-24 lg:ml-32">
   <LogoLink />
 </div>
 
@@ -78,7 +84,7 @@ const Navbar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1 ">{links}</ul>
       </div>
-      <div className="navbar-end gap-2 sm:gap-3 mr-4 sm:mr-8 md:mr-12 lg:mr-16">
+      <div className="navbar-end gap-2 sm:gap-3 mr-4 sm:mr-20 md:mr-24 lg:mr-32">
         {user ? (
           <>
             <div className="relative group">
@@ -97,20 +103,28 @@ const Navbar = () => {
               </div>
             </div>
             <button
-              onClick={handleSignOut}
-              className="btn text-white bg-red-700 ml-2"
-            >
-              SignOut
-            </button>
+  onClick={handleSignOut}
+  className="btn text-white bg-red-700 ml-0 sm:ml-2 px-3 sm:px-5 py-2 sm:py-3 text-sm sm:text-base"
+>
+  SignOut
+</button>
+
           </>
         ) : (
           <>
-            <NavLink className="btn bg-blue-900 text-white" to="/register">
-              Register
-            </NavLink>
-            <NavLink className="btn bg-blue-900 text-white" to="/login">
-              Login
-            </NavLink>
+            <NavLink
+  className="btn bg-blue-900 text-white px-3 py-1 text-sm sm:px-5 sm:py-2 sm:text-base mx-1"
+  to="/register"
+>
+  Register
+</NavLink>
+<NavLink
+  className="btn bg-blue-900 text-white px-3 py-1 text-sm sm:px-5 sm:py-2 sm:text-base mx-1"
+  to="/login"
+>
+  Login
+</NavLink>
+
           </>
         )}
       </div>

@@ -3,6 +3,7 @@ import Banner from "./Banner";
 import HowItWorks from "./HowItWorks";
 import Testimonials from "./Testimonials";
 import LatestItem from "./LatestItem";
+import Contact from "./Contact"; 
 import { motion } from "framer-motion";
 import Spinner from "../../Components/Spinner";
 
@@ -63,6 +64,15 @@ const Home = () => {
         viewport={{ once: true }}
       >
         <Testimonials />
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+      >
+        <Contact />
       </motion.div>
     </div>
   );

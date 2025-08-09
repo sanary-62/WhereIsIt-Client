@@ -99,8 +99,9 @@ const AddItems = () => {
   };
 
   return (
-    <div className="max-w-xl w-full mx-auto p-4 sm:p-6 bg-gray-100 shadow-md rounded my-4 sm:my-8">
-      <h2 className="text-2xl sm:text-4xl font-bold mb-6 text-blue-800 text-center sm:text-left">
+    <div className="max-w-xl w-full mx-auto p-4 sm:p-6 bg-gray-100 shadow-md rounded my-4 mt-24 sm:my-8">
+
+      <h2 className="text-2xl sm:text-4xl font-bold mb-6 mt-12 text-blue-700 text-center sm:text-left">
         Add Lost & Found Item
       </h2>
       <form onSubmit={handleSubmit} className="space-y-4">

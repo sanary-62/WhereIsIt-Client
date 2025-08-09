@@ -41,7 +41,7 @@ const MyItems = () => {
 
   if (myItems.length === 0) {
     return (
-      <div className="text-center mt-10 text-xl font-semibold text-gray-500">
+      <div className="text-center mt-24 mb-16 text-xl font-semibold text-gray-500">
         You haven’t posted any lost or found items yet.
       </div>
     );
@@ -51,7 +51,7 @@ const MyItems = () => {
   console.log("token in the context", user.accessToken);
 
   return (
-    <div className="p-5 max-w-5xl mx-auto">
+    <div className="p-5 max-w-7xl mx-auto mt-16">
       <h2 className="text-3xl font-bold mb-4 text-blue-700">My Posted Items</h2>
       <div className="overflow-x-auto w-full">
         <table className="table w-full border border-gray-200">
