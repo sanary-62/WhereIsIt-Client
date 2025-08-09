@@ -36,6 +36,15 @@ const AddItems = () => {
           navigate("/login");
         }
       });
+      Swal.fire({
+  icon: "success",
+  title: "Post Added!",
+  text: "Your item has been added successfully.",
+  confirmButtonText: "OK",
+}).then(() => {
+  navigate("/my-items");
+});
+
     }
   }, [user, navigate]);
 
