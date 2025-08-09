@@ -52,24 +52,25 @@ const Login = () => {
     <div className="hero bg-base-200 min-h-screen px-4">
       <div className="hero-content flex flex-col lg:flex-row-reverse items-center gap-6">
         <div
-          style={{
-            width: "100%",
-            maxWidth: "650px",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <Lottie
-            style={{
-              width: "100%",
-              maxWidth: "650px",
-              height: "auto",
-            }}
-            animationData={loginLottie}
-            loop={true}
-          />
-        </div>
+  className="hidden sm:flex"
+  style={{
+    width: "100%",
+    maxWidth: "650px",
+    justifyContent: "center",
+    alignItems: "center",
+  }}
+>
+  <Lottie
+    style={{
+      width: "100%",
+      maxWidth: "650px",
+      height: "auto",
+    }}
+    animationData={loginLottie}
+    loop={true}
+  />
+</div>
+
 
         <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
           <div className="card-body">
