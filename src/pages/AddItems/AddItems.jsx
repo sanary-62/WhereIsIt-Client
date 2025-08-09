@@ -5,6 +5,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import "react-toastify/dist/ReactToastify.css";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import Lottie from "lottie-react";
+import addLottie from "../../assets/Lotties/Discover.json";
 const AddItems = () => {
   const { user } = useContext(AuthContext);
   const [date, setDate] = useState(new Date());
@@ -108,94 +110,114 @@ const AddItems = () => {
   };
 
   return (
-    <div className="max-w-xl w-full mx-auto p-4 sm:p-6 bg-gray-100 shadow-md rounded my-4 mt-24 sm:my-8">
+  <div className="max-w-7xl mx-auto p-4 sm:p-6 bg-gray-100 shadow-md rounded my-4 mt-24 sm:my-8">
+  <h2 className="text-2xl sm:text-4xl font-bold mb-6 mt-12 text-blue-700 text-center sm:text-left">
+    Add Lost & Found Item
+  </h2>
 
-      <h2 className="text-2xl sm:text-4xl font-bold mb-6 mt-12 text-blue-700 text-center sm:text-left">
-        Add Lost & Found Item
-      </h2>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <select
-          name="type"
-          value={postData.type}
-          onChange={handleChange}
-          className="select select-bordered w-full"
-        >
-          <option value="Lost">Lost</option>
-          <option value="Found">Found</option>
-        </select>
+  {/* Flex container for form and Lottie */}
+  <div className="flex flex-col lg:flex-row gap-8 items-center lg:items-start">
+    
+    {/* Form section */}
+    <form onSubmit={handleSubmit} className="space-y-4 flex-1 w-full">
+      <select
+        name="type"
+        value={postData.type}
+        onChange={handleChange}
+        className="select select-bordered w-full"
+      >
+        <option value="Lost">Lost</option>
+        <option value="Found">Found</option>
+      </select>
 
-        <input
-          type="url"
-          name="thumbnail"
-          value={postData.thumbnail}
-          onChange={handleChange}
-          placeholder="Image URL"
+      <input
+        type="url"
+        name="thumbnail"
+        value={postData.thumbnail}
+        onChange={handleChange}
+        placeholder="Image URL"
+        className="input input-bordered w-full"
+        required
+      />
+
+      <input
+        type="text"
+        name="title"
+        value={postData.title}
+        onChange={handleChange}
+        placeholder="Title"
+        className="input input-bordered w-full"
+        required
+      />
+
+      <textarea
+        name="description"
+        value={postData.description}
+        onChange={handleChange}
+        placeholder="Description"
+        className="textarea textarea-bordered w-full"
+        required
+      />
+
+      <input
+        type="text"
+        name="category"
+        value={postData.category}
+        onChange={handleChange}
+        placeholder="Category (e.g., pets, documents, gadgets)"
+        className="input input-bordered w-full"
+        required
+      />
+
+      <input
+        type="text"
+        name="location"
+        value={postData.location}
+        onChange={handleChange}
+        placeholder="Location"
+        className="input input-bordered w-full"
+        required
+      />
+
+      <div>
+        <label className="block mb-1">Date Lost/Found</label>
+        <DatePicker
+          selected={date}
+          onChange={(date) => setDate(date)}
           className="input input-bordered w-full"
-          required
         />
+      </div>
 
-        <input
-          type="text"
-          name="title"
-          value={postData.title}
-          onChange={handleChange}
-          placeholder="Title"
-          className="input input-bordered w-full"
-          required
-        />
+      <div className="bg-gray-100 p-4 rounded">
+        <p>
+          <strong>Name:</strong> {user?.displayName}
+        </p>
+        <p>
+          <strong>Email:</strong> {user?.email}
+        </p>
+      </div>
 
-        <textarea
-          name="description"
-          value={postData.description}
-          onChange={handleChange}
-          placeholder="Description"
-          className="textarea textarea-bordered w-full"
-          required
-        />
+      <button type="submit" className="btn bg-blue-800 text-white w-full">
+        Add Post
+      </button>
+    </form>
+{/* Lottie Animation */}
+<div className="flex-1 w-full max-w-lg hidden md:block">
+  <Lottie
+    style={{
+      width: "100%",
+      maxHeight: "600px",
+      height: "auto",
+    }}
+    animationData={addLottie}
+    loop={true}
+  />
+</div>
 
-        <input
-          type="text"
-          name="category"
-          value={postData.category}
-          onChange={handleChange}
-          placeholder="Category (e.g., pets, documents, gadgets)"
-          className="input input-bordered w-full"
-          required
-        />
 
-        <input
-          type="text"
-          name="location"
-          value={postData.location}
-          onChange={handleChange}
-          placeholder="Location"
-          className="input input-bordered w-full"
-          required
-        />
+  </div>
+</div>
 
-        <div>
-          <label className="block mb-1">Date Lost/Found</label>
-          <DatePicker
-            selected={date}
-            onChange={(date) => setDate(date)}
-            className="input input-bordered w-full"
-          />
-        </div>
-
-        <div className="bg-gray-100 p-4 rounded">
-          <p>
-            <strong>Name:</strong> {user?.displayName}
-          </p>
-          <p>
-            <strong>Email:</strong> {user?.email}
-          </p>
-        </div>
-
-        <button type="submit" className="btn bg-blue-800 text-white w-full">
-          Add Post
-        </button>
-      </form>
-    </div>
   );
 };
 
