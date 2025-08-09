@@ -10,6 +10,7 @@ const MyItems = () => {
 
   useEffect(() => {
     if (!user?.email) return;
+    
 
     user.getIdToken().then((idToken) => {
       fetch(`https://whereisit-server-beta.vercel.app/myItems`, {
