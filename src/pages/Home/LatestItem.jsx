@@ -1,22 +1,22 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../../contexts/AuthContext/AuthProvider";
+
 
 const LatestItem = () => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
-  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        let token = null;
-        if (user) {
-          token = await user.getIdToken();
+        let headers = {};
+        const token = localStorage.getItem("access-token");
+        if (token) {
+          headers.Authorization = `Bearer ${token}`;
         }
 
         const res = await fetch(`https://whereisit-server-beta.vercel.app/items`, {
-          headers: token ? { Authorization: `Bearer ${token}` } : {},
+          headers,
         });
 
         if (!res.ok) {
@@ -26,12 +26,10 @@ const LatestItem = () => {
         const data = await res.json();
         const itemsArray = Array.isArray(data) ? data : data.items || [];
 
-        
         const sorted = itemsArray.sort(
           (a, b) => new Date(b.date) - new Date(a.date)
         );
 
-       
         setItems(sorted.slice(0, 3));
       } catch (err) {
         console.error("Failed to load latest items:", err);
@@ -41,7 +39,8 @@ const LatestItem = () => {
     };
 
     fetchItems();
-  }, [user]);
+  }, []);
+
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">

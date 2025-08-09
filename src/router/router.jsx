@@ -53,9 +53,8 @@ const router = createBrowserRouter([
 },
 {
   path: "/allRecovered",
-  element: <PrivateRoute>
+  element: 
     <AllRecovered />
-    </PrivateRoute>
 },
 
       {

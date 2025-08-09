@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext/AuthProvider";
 import Spinner from "../../Components/Spinner";
+
 const AllItems = () => {
   const { user } = useContext(AuthContext);
   const [items, setItems] = useState([]);
@@ -10,14 +11,32 @@ const AllItems = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!user?.email) return;
-
-    user.getIdToken().then((idToken) => {
-      fetch(`https://whereisit-server-beta.vercel.app/items`, {
-        headers: {
-          Authorization: `Bearer ${idToken}`,
-        },
-      })
+    setLoading(true);
+    if (user?.email) {
+      
+      user.getIdToken().then((idToken) => {
+        fetch(`https://whereisit-server-beta.vercel.app/items`, {
+          headers: {
+            Authorization: `Bearer ${idToken}`,
+          },
+        })
+          .then((res) => {
+            if (!res.ok) throw new Error("Failed to fetch items");
+            return res.json();
+          })
+          .then((data) => {
+            setItems(Array.isArray(data) ? data : []);
+            setLoading(false);
+          })
+          .catch((err) => {
+            console.error(err);
+            setItems([]);
+            setLoading(false);
+          });
+      });
+    } else {
+      
+      fetch(`https://whereisit-server-beta.vercel.app/items`)
         .then((res) => {
           if (!res.ok) throw new Error("Failed to fetch items");
           return res.json();
@@ -31,7 +50,7 @@ const AllItems = () => {
           setItems([]);
           setLoading(false);
         });
-    });
+    }
   }, [user]);
 
   useEffect(() => {
@@ -54,9 +73,7 @@ const AllItems = () => {
   }
 
   return (
-   <div className="max-w-7xl w-full mx-auto px-2 sm:px-4 py-6 sm:py-10 mt-16">
-
-
+    <div className="max-w-7xl w-full mx-auto px-2 sm:px-4 py-6 sm:py-10 mt-16">
       <h1 className="text-3xl font-bold mb-8 text-center text-blue-700">
         Lost & Found Items
       </h1>
@@ -73,9 +90,7 @@ const AllItems = () => {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {filteredItems.length === 0 ? (
-          <p className="text-center text-gray-500 col-span-full">
-            No items found.
-          </p>
+          <p className="text-center text-gray-500 col-span-full">No items found.</p>
         ) : (
           filteredItems.map((item) => (
             <div

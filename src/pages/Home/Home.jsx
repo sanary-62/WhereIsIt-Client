@@ -11,18 +11,15 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("https://whereisit-server-beta.vercel.app/items", {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("access-token")}`,
-      },
-    })
-      .then((res) => res.json())
-      .then(() => setLoading(false))
-      .catch((err) => {
-        console.error(err);
-        setLoading(false);
-      });
-  }, []);
+  fetch("https://whereisit-server-beta.vercel.app/items") 
+    .then((res) => res.json())
+    .then(() => setLoading(false))
+    .catch((err) => {
+      console.error(err);
+      setLoading(false);
+    });
+}, []);
+
 
   if (loading) return <Spinner />;
 
